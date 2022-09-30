@@ -1,0 +1,26 @@
+.dashheader{
+    background-image: linear-gradient(to right bottom, #7ed56f, #28b485);
+    height: 16rem;
+    width: 100%;
+    text-align: center;
+
+    h2{
+        padding-top: 3rem;
+    }
+
+    .breadcrumb{
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0 2rem;
+        margin-top: 1rem;
+        list-style: none;
+        justify-content: center!important;
+
+        li{
+            margin-right: 2rem;
+        }
+        li.active{
+            color:blue
+        }
+    }
+}

@@ -1,0 +1,48 @@
+
+.footerSection {
+    background-color: #28b485;
+    color: #fff;
+    padding:4rem 0 0 0;
+} 
+
+.footerItemsAll {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+
+} 
+
+.footerItem {
+    display: flex;
+    flex-direction: column;
+    min-height: 22rem;
+} 
+
+.heading {
+    font-size: 1.6rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--primary-lighter);  
+  font-size: 1.8rem;
+  margin: 2rem 0px;
+  position: relative;
+
+
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 5rem;
+    height: 2px;
+    background: #fff;
+    bottom: -4px;
+  }
+
+}
+
+.footerText {
+    margin: 10px 0px 5px 0px;
+    color: var(--primary-lighter);
+    font-size: 1.5rem;
+}

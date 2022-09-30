@@ -1,0 +1,34 @@
+/*--------  
+CSS classed used from components> accountRegister> register.styles.scss -> common classes used
+-----------*/
+.dashSearchWrapper{
+    margin-top: -4rem;
+    position: relative;
+    z-index: 999;
+    background-color: #e7e7e7;
+    padding: 3rem ;
+    margin-bottom: 5rem;
+    box-shadow: 0 1rem 1.4rem #0000004f;
+
+    .searchForm__list{
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    .searchForm__ip3{
+        &-flex{
+            display: flex;
+            grid-gap:2rem;
+        }
+    }
+    .form_label{
+        margin-bottom: 1rem;
+    }
+    .form_select{
+        width:100%;
+    }
+    .dataSearchBtn{
+        height: 4rem;
+        margin-top: 2rem;
+    }
+}
