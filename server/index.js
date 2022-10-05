@@ -26,17 +26,17 @@ const authRoutes = require('./routes/auth')
 const userRoutes = require('./routes/user')
 
 //apiDocs
-// app.get('/', (req,res)=>{
-//   fs.readFile('docs/apiDocs.json', (err, data)=>{
-//     if(err){
-//       res.status(400).json({
-//         error: err
-//       })
-//     }
-//     const docs = JSON.parse(data)
-//     res.json(docs)
-//   })
-// })
+app.get('/api', (req,res)=>{
+  fs.readFile('docs/apiDocs.json', (err, data)=>{
+    if(err){
+      res.status(400).json({
+        error: err
+      })
+    }
+    const docs = JSON.parse(data)
+    res.json(docs)
+  })
+})
 
 /** Connect Mongo DB */
 mongoose.connect(keys.mongoURI, {})
@@ -54,9 +54,9 @@ app.use(cookieParser())
 app.use(expressValidator())
 app.use(cors())
 //middleware Routes
-app.use('/', postRoutes)
-app.use('/', authRoutes)
-app.use('/', userRoutes)
+app.use('/api', postRoutes)
+app.use('/api', authRoutes)
+app.use('/api', userRoutes)
 
 
 
@@ -108,4 +108,4 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 const PORT =  process.env.PORT || 5000
-app.listen(PORT,()=>{console.log(`A node js API is listening on port : 5000`)})
+app.listen(PORT,()=>{console.log(`A node js API is listening on port : ${PORT}`)})
