@@ -1,3 +1,4 @@
+@import "../../../styles/main.scss";
 
 .section2{
     background: #f1f1f1;
@@ -10,7 +11,8 @@
 
     &_flex-wrapper{
     display:flex;
-    gap: 12rem;
+    flex-wrap: wrap;
+    gap: 2rem;
 
     }
     &-icon1,&-icon2,&-icon3{
@@ -31,4 +33,9 @@
         }
     }
 
+    @include respond(phone) {
+        &-icon1,&-icon2,&-icon3{
+            flex: 1 1 100%;
+        }
+    }
 }

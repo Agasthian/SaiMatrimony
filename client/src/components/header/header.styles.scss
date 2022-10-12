@@ -1,8 +1,7 @@
+@import "../../styles/main.scss";
 
 .headerWrapper{
-    
     background-color: #28b485;
-    
     width:100%;
     height:7rem;
     a{
@@ -12,7 +11,16 @@
         background-color: #ffb900;
         padding: 0.5rem 1rem;
     }
+
+    @include respond(phone-max) {
+        background-color: $color-secondary-light;
+        a{
+            color:#000;
+        }
+    }
+
 }
+
 .headerFlexBox{
     display: flex;
     flex-wrap: wrap;
@@ -21,38 +29,101 @@
     height: 100%;
     padding: 0 8rem;
 
-    &_Left{
+    &_Logo{
        
     }
 
-    &_Center{
-        ul{
-            display: flex;
-            justify-content: space-between;
-            
+    &_DesktopMenu{
+        display: flex;
+        align-items: center;
+        grid-gap: 15rem;
 
-            li{
-                list-style: none;
-                margin-right: 2rem;
+        &_Left{
+            ul{
+                display: flex;
+                justify-content: space-between;
+                
+    
+                li{
+                    list-style: none;
+                    margin-right: 2rem;
+    
+                    a{
+                        font-weight: 600;
+                        font-size: 1.5rem;
+    
+                      &:hover{
+                        color:#000;
+                        cursor: pointer;
+                        transition: 0.2s ease-in;
+                      }  
+                    }
+                }
+            }
+        }
+    
+        &_Right{
+            .headerRightBtn{
+                margin-left: 2rem;
+            }
+        }
 
-                a{
-                    font-weight: 600;
-                    font-size: 1.5rem;
+    }
 
-                  &:hover{
-                    color:#000;
-                    cursor: pointer;
-                    transition: 0.2s ease-in;
-                  }  
+
+    &_MobileMenu{
+        display: none;
+    }
+    
+    //Mobile CSS
+
+    @include respond(tab-port) {
+        &_DesktopMenu{
+            grid-gap: 3rem;
+        }
+    }
+    @include respond(phone-max) {
+        padding: 0 4rem;
+
+        &_DesktopMenu{
+            &_Left{
+                ul{
+                    li{
+                        margin-right: 1rem;
+                    }
                 }
             }
         }
     }
 
-    &_Right{
-        .headerRightBtn{
-            margin-left: 2rem;
+    @include respond(phone) {
+        &_DesktopMenu{
+            display: none;
+        }
+        &_MobileMenu{
+            display: block;
             
+            &_mobile_list{
+                position: absolute;
+                z-index: 99999;
+                top: 7rem;
+                right: 0;
+                min-height: 200px;
+                width: 100%;
+                background-color: $color-secondary-light;
+                padding: 2rem;
+                display: flex;
+                justify-content: center;
+
+                ul{
+                    list-style: none;
+                    li{
+                        font-size: 1.8rem;    
+                        margin-bottom: 2rem;
+                        font-weight: 700;
+                    }
+                }
+            }
         }
     }
 }

@@ -1,7 +1,10 @@
+@import "../../../styles/main.scss";
+
 .section3{
 
     &_wrapper{
         display: flex;
+        flex-wrap: wrap;
         padding: 7rem 2rem;
         
 
@@ -58,6 +61,34 @@
                     background-image: url('../../../assets/icon4.png');
 
                 }
+            }
+        }
+    }
+
+    @include respond(tab-port) {
+        &_wrapper{
+            &-content{
+                padding: 0rem 3rem;
+
+                h3{
+                    font-size: 2.4rem;
+                }
+                p{
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    @include respond(phone) {
+        &_wrapper{
+            &-photo{
+                height: 36rem;
+                background-position-y: -8rem;
+                margin-bottom: 4rem;
+            }
+            &-content{
+                flex:1 1 100%;
             }
         }
     }

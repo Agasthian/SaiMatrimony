@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useState} from 'react'
 import { Link, NavLink,useNavigate } from 'react-router-dom'
 import {connect} from 'react-redux'
 
@@ -10,6 +10,8 @@ import './header.styles.scss'
 
 const Header = (props) => {
   
+  //State
+  const [toggleHamburger, setToggleHamburger] = useState(false)
   
   let navigate = useNavigate();
 
@@ -40,40 +42,82 @@ const Header = (props) => {
   return (
     <div className="headerWrapper">
       <div className='headerFlexBox'>
-        <div className='headerFlexBox_Left'>
+
+        <div className='headerFlexBox_Logo'>
           <h2><Link to='/'>Sai Matrimony</Link></h2>
         </div>
-        <div className="headerFlexBox_Center">
-          <ul>
-            <li><NavLink to='/'>Home</NavLink></li>
-            <li><NavLink to='/dash'>Dashboard</NavLink></li>
-            <li><NavLink to='/member'>Membership</NavLink></li>
-            <li><NavLink to='/contact'>Contact Us</NavLink></li>
-          </ul>
+
+        <div className="headerFlexBox_DesktopMenu">
+
+          <div className="headerFlexBox_DesktopMenu_Left">
+            <ul>
+              <li><NavLink to='/'>Home</NavLink></li>
+              <li><NavLink to='/dash'>Dashboard</NavLink></li>
+              <li><NavLink to='/member'>Membership</NavLink></li>
+              <li><NavLink to='/contact'>Contact Us</NavLink></li>
+            </ul>
+          </div>
+        
+          <div className='headerFlexBox_DesktopMenu_Right'>
+            {/* {renderContent()} */}
+            {/* <NavLink to='/signup'> <button className="headerRightBtn btn"> Sign Up</button> </NavLink> */}
+
+            {!isAuthenticated() && (
+              <>
+                <NavLink to='/signin'>Sign In</NavLink>   
+                <Link to='/signup'> <button className="headerRightBtn btn"> Sign Up</button> </Link>
+              </>
+            )}
+
+            {isAuthenticated() && (
+              <>
+                <NavLink to={`/user/${isAuthenticated().user._id}`}>
+                    {`${isAuthenticated().user.name}'s profile`}
+                </NavLink>
+                <a style={{marginLeft:'15px'}} onClick={()=>{signout( ()=> navigate('/') )}}>Signout</a>
+              </>
+            )}
+          </div>
         </div>
-        <div className='headerFlexBox_Right'>
-          {/* {renderContent()} */}
-          {/* <NavLink to='/signup'> <button className="headerRightBtn btn"> Sign Up</button> </NavLink> */}
+            
+        <div className="headerFlexBox_MobileMenu">
+            <button onClick={()=> setToggleHamburger(!toggleHamburger)} class="ui icon button">
+              <i class="bars large icon"></i>
+            </button>
+          {/* //Mobile Navbar */}
+          {toggleHamburger ? 
+          <div className="headerFlexBox_MobileMenu_mobile_list">
+            <ul>
+              <li><NavLink to='/'>Home</NavLink></li>
+              <li><NavLink to='/dash'>Dashboard</NavLink></li>
+              <li><NavLink to='/member'>Membership</NavLink></li>
+              <li><NavLink to='/contact'>Contact Us</NavLink></li>
 
-          {!isAuthenticated() && (
-            <>
-              <NavLink to='/signin'>Sign In</NavLink>   
-              <Link to='/signup'> <button className="headerRightBtn btn"> Sign Up</button> </Link>
-            </>
-          )}
+            {!isAuthenticated() && (
+              <>
+              <li><NavLink to='/signin'>Sign In</NavLink></li>
+              <li><Link to='/signup'> Sign Up </Link></li>
+              </>
+            )}
 
-          {isAuthenticated() && (
-            <>
-              <NavLink to={`/user/${isAuthenticated().user._id}`}>
-                  {`${isAuthenticated().user.name}'s profile`}
-              </NavLink>
-              <a style={{marginLeft:'15px'}} onClick={()=>{signout( ()=> navigate('/') )}}>Signout</a>
-            </>
-          )}
+            {isAuthenticated() && (
+              <>
+                <li><NavLink to={`/user/${isAuthenticated().user._id}`}>
+                    {`${isAuthenticated().user.name}'s profile`}
+                </NavLink></li>
+                <li><a style={{marginLeft:'15px'}} onClick={()=>{signout( ()=> navigate('/') )}}>Signout</a></li>
+              </>
+            )}
 
-          
+            </ul>
+          </div>
+          : ''}
         </div>
-      </div>
+        
+      </div> 
+      
+
+      
     </div>
   )
 }

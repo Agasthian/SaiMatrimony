@@ -18,7 +18,7 @@ const LandingSection1 = () => {
     //     </div>
     // </div>
     <div className='section1Wrapper'>
-        <div className="container">
+        <div className="container-responsive">
             <div className="section1Wrapper__form">
                 <div className="section1Wrapper__form_wrapper">
                     <h2>Find your happpy one </h2>
